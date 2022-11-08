@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Animació amb timer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+	<style>
+	#cavall img{
+		width:400px;
+		height:300px;
+		display:none;
+	}	
+	</style>
+	
+  </head>
+  <body>
+    <!-- page content -->
+    <div id="cavall">
+		<img style="display:inline;" src="./img/i1.png" />
+		<img src="./img/i2.png" />		
+		<img src="./img/i3.png" />		
+		<img src="./img/i4.png" />		
+		<img src="./img/i5.png" />						
+		<img src="./img/i6.png" />		
+		<img src="./img/i7.png" />				
+		<img src="./img/i8.png" />		
+		<img src="./img/i9.png" />		
+		<img src="./img/i10.png" />		
+		<img src="./img/i11.png" />		
+		<img src="./img/i12.png" />		
+	</div>
+			    
+  </body>
+  
+	<script>
+		var num=0;		
+		var len = document.getElementById("cavall").children.length;
+		var timer = setInterval("next()", 200);
+
+		
+		function next() {
+			document.getElementById("cavall").children[num].style.display="none";
+			num=++num%len;
+			document.getElementById("cavall").children[num].style.display="inline";			
+		}
+		
+	</script>
+	
+</html>

@@ -1,0 +1,36 @@
+<!--
+Exemple extret de http://ksesocss.blogspot.com/2012/12/gif-animados-con-CSS.html
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Animació en CSS3</title>
+
+	<style>
+		#cavall{
+			position: relative; 
+			width: 67px; 
+			height: 54px; 
+			overflow: hidden; 
+			background: url(./img/sprite-horse.jpg) no-repeat 0px -76px; 
+			animation: run-horse .5s steps(12) infinite; /* 12 frames, 12 pasos */ 
+		}			
+			
+		@keyframes run-horse { 
+			0% { background-position: 0px 0;} 
+			100% { background-position: -804px 0; } 
+		}		
+	
+	</style>
+	
+  </head>
+  <body>
+    <!-- page content -->
+    <div id="cavall">
+	</div>
+			    
+  </body>
+  	
+</html>

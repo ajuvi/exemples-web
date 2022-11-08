@@ -1,0 +1,189 @@
+<html>
+<head>
+<title></title>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="jquery-1.9.1.js"></script>
+<script src="jquery-ui.js"></script>
+
+<script>
+
+//assignar l'arrossegar i redimensionar de jquery ui
+$(document).ready(function() {
+	$( "#quadrat" ).draggable().resizable();	
+});
+
+
+/* Funcions per modificar el quadrat */
+
+function color_red(){
+	//modifica el color del quadrat a vermell
+	$("#quadrat").css("background-color","red");
+}
+
+function move_right(){
+	//mou el quadrat 10px a la dreta
+	var pos=$("#quadrat").position().left;
+	$("#quadrat").css('left', pos+10);
+}
+
+
+function color_blue(){
+	//modifica el color del quadrat a blau
+	$("#quadrat").css("background-color","blue");	
+}
+
+function move_left(){
+	//mou el quadrat 10px a l'esquerre
+	var pos=$("#quadrat").position().left;
+	$("#quadrat").css('left', pos-10);
+}
+
+
+function color_green(){
+	//modifica el color del quadrat a verd
+	$("#quadrat").css("background-color","green");
+}
+
+function move_up(){
+	//mou el quadrat 10px amunt
+	var pos=$("#quadrat").position().top;
+	$("#quadrat").css('top', pos-10);
+}
+
+
+function color_yellow(){
+	//modifica el color del quadrat a groc
+	$("#quadrat").css("background-color","yellow");
+}
+
+function move_down(){
+	//mou el quadrat 10px avall
+	var pos=$("#quadrat").position().top;
+	$("#quadrat").css('top', pos+10);
+}
+
+
+function engrandir(){
+	var pos=$("#quadrat").width();
+	pos=Math.min(pos+10,200);
+	$("#quadrat").css('width', pos);	
+	$("#quadrat").css('height', pos);		
+}
+
+function encongir(){
+	var pos=$("#quadrat").width();
+	pos=Math.max(pos-10,10);
+	$("#quadrat").css('width', pos);	
+	$("#quadrat").css('height', pos);	
+}
+
+//graus de rotació del quadrat
+var rotation = 0;
+
+function rotate(degrees){
+	rotation+=degrees;
+	$("#quadrat").css({
+						'-webkit-transform' : 'rotate('+ rotation +'deg)',
+						'-moz-transform' : 'rotate('+ rotation +'deg)',
+						'-ms-transform' : 'rotate('+ rotation +'deg)',
+						'transform' : 'rotate('+ rotation +'deg)'
+					 });				
+}
+
+</script>
+
+<style>
+
+	#quadrat{
+		position:absolute; 
+		top:150px; 
+		left:300px; 
+		background-color:blue; 
+		width:40px; 
+		height:40px;		
+	}
+
+</style>
+
+
+</head>
+<body>
+<div>
+	<h1>Opcions</h1>
+	<em>
+		(up) moure amunt<br/>
+		(down) moure avall<br/>
+		(left) moure esquerre<br/>
+		(rigth) moure a la dreta<br/>
+		(+) engrandir<br/>
+		(-) empetitir<br/>				
+		(1) vermell<br/>
+		(2) blau<br/>				
+		(3) verd<br/>
+		(4) groc<br/>						
+		(o) gir a esquerre<br/>
+		(p) gir a dretes<br/>
+		Drag and Drop<br/>
+		Resizable<br/>
+	</em>
+
+
+	<div id="quadrat">&nbsp;</div>
+</div>
+
+
+<script> 
+
+/* moviment del quadrat */
+timer = setInterval("moure()", 20);
+
+function moure(){
+	if(map[37]) move_left();
+	if(map[38]) move_up();
+	if(map[39]) move_right();
+	if(map[40]) move_down();
+}
+
+
+/* Control del teclat */
+
+var map = {37: false, 38: false, 39: false, 40: false};
+
+$(document).keydown(function(e) {
+    if (e.keyCode in map) {
+		map[e.keyCode] = true;
+    }
+}).keyup(function(e) {
+    if (e.keyCode in map) {
+        map[e.keyCode] = false;
+    }
+});
+
+$(window).keyup(function(event){
+
+    switch(event.keyCode){	
+		case 49: color_red();break; //tecla 1
+		case 50: color_blue();break; //tecla 2
+		case 51: color_green();break; //tecla 3	
+		case 52: color_yellow();break; //tecla 4
+
+		//chrome
+		case 187: engrandir();break; //tecla +				
+		case 189: encongir();break; //tecla -
+		
+		//firefox
+		case 107: engrandir();break; //tecla +
+		case 109: encongir();break; //tecla -
+
+		//firefox
+		case 80: rotate(+5);break; //tecla P
+		case 79: rotate(-5);break; //tecla O
+			
+	}
+});
+
+</script>
+
+</body>
+</html>

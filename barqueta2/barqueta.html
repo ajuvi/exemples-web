@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Animació barqueta</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+         
+    <style>
+        html {
+            background-color: white;
+        }
+        
+        #anima {
+            position: relative;
+            width: 900px;
+            height: 300px;
+            margin: auto;
+            overflow: hidden;
+            background-color: white;
+        }
+        
+        #barca {
+            position: absolute;
+            width: 100px;
+            height: auto;
+            left: 50px;
+            top: 100px;
+            z-index: 2;
+        }
+        
+        #mar {
+            position: absolute;
+            top: 179px;
+            z-index: 3;
+        }
+        
+        #lluna {
+            position: absolute;
+            left: 700px;
+            z-index: 1;
+            opacity: 0;
+        }
+        
+        #sol {
+            position: absolute;
+            left: 700px;
+            z-index: 1;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="anima">
+        <img id="barca" src="barqueta.png">
+        <img id="mar" src="mar.png">
+        <img id="sol" src="sol.png">
+        <img id="lluna" src="lluna.png">
+    </div>
+
+</body>
+
+<script>
+    var time = 10000; //10 segons
+	run();
+    
+	function run(){
+		//cel
+		$('#anima').delay(time/4).animate({
+			backgroundColor:"#000000"
+		}, time/4);
+
+		$('#anima').delay(time/4).animate({
+			backgroundColor:"#FFFFFF"
+		}, time/4);
+		
+		//barca
+		$('#barca').animate({
+			left:"+750px"
+		}, time/2);
+
+		$('#barca').animate({
+			left:"50px"
+		},time/2);
+		
+		//sol
+		$("#sol").delay(time/2).animate({opacity:"0"},0);
+		$("#sol").delay(time/2).animate({opacity:"100"},0);    
+
+		//lluna
+		$("#lluna").delay(time/2).animate({opacity:"100"},0);
+		$("#lluna").delay(time/2).animate({opacity:"0"},0);
+
+		//mar
+		$('#mar').animate({left:"-5px"},300, function(){marDret();});
+	
+	}
+      
+    function marEsq(){
+        $('#mar').animate({left:"-5px"},300, function(){marDret();});
+    }
+    function marDret(){
+        $('#mar').animate({left:"+0px"},300, function(){marEsq();});
+    }
+
+    
+</script>
+
+</html>
